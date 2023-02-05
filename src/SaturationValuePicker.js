@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
+/* eslint-disable quotes */
+import React, { Component } from "react";
 import {
   View,
   TouchableWithoutFeedback,
-  ViewPropTypes,
   PanResponder,
   StyleSheet,
-} from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import PropTypes from 'prop-types';
-import chroma from 'chroma-js';
-import normalizeValue from './utils';
+} from "react-native";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { ViewPropTypes } from "deprecated-react-native-prop-types";
+
+import { LinearGradient } from "expo-linear-gradient";
+import PropTypes from "prop-types";
+import chroma from "chroma-js";
+import normalizeValue from "./utils";
 
 export default class SaturationValuePicker extends Component {
   constructor(props) {
@@ -26,17 +29,17 @@ export default class SaturationValuePicker extends Component {
           saturation,
           value,
         };
-        this.fireDragEvent('onDragStart', gestureState);
+        this.fireDragEvent("onDragStart", gestureState);
       },
       onPanResponderMove: (evt, gestureState) => {
-        this.fireDragEvent('onDragMove', gestureState);
+        this.fireDragEvent("onDragMove", gestureState);
       },
       onPanResponderTerminationRequest: () => true,
       onPanResponderRelease: (evt, gestureState) => {
-        this.fireDragEvent('onDragEnd', gestureState);
+        this.fireDragEvent("onDragEnd", gestureState);
       },
       onPanResponderTerminate: (evt, gestureState) => {
-        this.fireDragEvent('onDragTerminate', gestureState);
+        this.fireDragEvent("onDragTerminate", gestureState);
       },
       onShouldBlockNativeResponder: () => true,
     });
@@ -44,11 +47,7 @@ export default class SaturationValuePicker extends Component {
 
   getCurrentColor() {
     const { hue, saturation, value } = this.props;
-    return chroma.hsv(
-      hue,
-      saturation,
-      value,
-    ).hex();
+    return chroma.hsv(hue, saturation, value).hex();
   }
 
   computeSatValDrag(gestureState) {
@@ -117,19 +116,11 @@ export default class SaturationValuePicker extends Component {
         <TouchableWithoutFeedback onPress={this.firePressEvent}>
           <LinearGradient
             style={[{ borderRadius }, styles.linearGradient]}
-            colors={[
-              '#fff',
-              chroma.hsl(hue, 1, 0.5).hex(),
-            ]}
+            colors={["#fff", chroma.hsl(hue, 1, 0.5).hex()]}
             start={[0, 0.5]}
             end={[1, 0.5]}
           >
-            <LinearGradient
-              colors={[
-                'rgba(0, 0, 0, 0)',
-                '#000',
-              ]}
-            >
+            <LinearGradient colors={["rgba(0, 0, 0, 0)", "#000"]}>
               <View
                 style={{
                   height: size,
@@ -163,17 +154,17 @@ export default class SaturationValuePicker extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   slider: {
     top: 0,
     left: 0,
-    position: 'absolute',
-    borderColor: '#fff',
+    position: "absolute",
+    borderColor: "#fff",
   },
   linearGradient: {
-    overflow: 'hidden',
+    overflow: "hidden",
   },
 });
 
