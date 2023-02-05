@@ -1,3 +1,4 @@
+# This is a forked repo to support Expo version 47.
 
 # react-native-hsv-color-picker
 > a react native HSV(hue, saturation, value) color picker
